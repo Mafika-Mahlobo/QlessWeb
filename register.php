@@ -34,19 +34,8 @@ require_once('config.php');
                         </div>
                         <form action="register.php" method="post">
                             <input class="form-control" id="name" type="text" name="name" placeholder="Full Name" required>
-                            <input class="form-control" id="email" type="email" name="email" placeholder="E-mail Address" required>
+                            <input class="form-control" id="Id" type="number" name="email" placeholder="Id/Passport number" required>
                             <input class="form-control" id="phonenumber" type="number" name="phonenumber" placeholder="Phone Number" required>
-                            <select name="role" id="user_role" class="form-control drop-down" onchange="selected();" required>
-                                <option value="non-employee">Are you registering as an employee?</option>
-                                <option value="employee">Yes</option>
-                                <option value="non-employee">No</option>
-                            </select>
-                            <select name="organization" id="org" class="form-control drop-down">
-                                <option value="NA">Select organization</option>
-                                <?php 
-                                    
-                                ?>
-                            </select>
                             <input class="form-control" id="password" type="password" name="password" placeholder="Password" required>
                             <input class="form-control" id="repassword" type="password" name="repassword" placeholder="Retype Password" required>
 
@@ -81,10 +70,8 @@ require_once('config.php');
 
 		if(valid){
             e.preventDefault();
-            var email 		= $('#email').val();
+            var IdNumber 		= $('#Id').val();
 			var name 		= $('#name').val();
-            var role        = $('#user_role').val();
-            var org 		= $('#org').val();
 			var phonenumber = $('#phonenumber').val();
 			var password 	= $('#password').val();
 			var repassword	= $('#repassword').val();
@@ -93,7 +80,7 @@ require_once('config.php');
 			$.ajax({
                 url:'process.php',
                 type:'POST',
-                data:{email: email,name: name, role: role,organization:org,phonenumber:phonenumber, password:password, repassword: repassword},
+                data:{Id: IdNumber,name: name,phonenumber:phonenumber, password:password, repassword: repassword},
                 success:function(data){
                     if(data == "1"){
                         Swal.fire({
@@ -125,19 +112,6 @@ require_once('config.php');
     
 	
 </script>
-<script>
-    function selected(){
-        var selected_role = document.getElementById('user_role').value;
-
-        if(selected_role == "employee"){
-            document.getElementById('org').style.display = "block";
-        }else{
-            document.getElementById('org').style.display = "none";
-        }
-        
-    }
-</script>
-
 
 </body>
 </html>

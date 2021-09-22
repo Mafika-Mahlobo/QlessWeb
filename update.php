@@ -6,31 +6,29 @@ require_once('config.php');
 if(isset($_POST["password"])){
 	$pass = sha1($_POST["password"]);
 	
-	$email 			= $_POST['email'];
+	$Idnum			= $_POST['Id'];
 	$name			= $_POST['name'];
-	$role 			= $_POST['role'];
 	$password 		= $pass;
 	$phonenumber	= $_POST['phonenumber'];
 
 	for ($i =0; $i < count($_SESSION['userlogin']); $i++) 
       {
-    $emailudate  = $_SESSION['userlogin'][$i]['Email'];
+    $IdUpdate  = $_SESSION['userlogin'][$i]['Id_Number'];
     }
 
 		
-    $sql = "UPDATE `users` SET `Email`='".$email."',`username`='".$name."',`Userrole`='".$role."',`UserPassword`='".$password."',`phone`='".$phonenumber."' WHERE `Email` = '".$emailudate."'";
+    $sql = "UPDATE `users` SET `Id_Number`='".$Idnum."',`username`='".$name."',`UserPassword`='".$password."',`phone`='".$phonenumber."' WHERE `Id_Number` = '".$IdUpdate."'";
 	$stmtupdate = $db->prepare($sql);
-	$result = $stmtupdate->execute([$name, $email, $role, $password, $phonenumber]);
+	$result = $stmtupdate->execute([$name, $Idnum, $password, $phonenumber]);
 			
     
 			
 	if($result){
-		$newlogin = "SELECT * FROM `users` WHERE `email` = '".$email."' AND Userpassword = '".$password."'"; 
+		$newlogin = "SELECT * FROM `users` WHERE `Id_Number` = '".Idnum."' AND Userpassword = '".$password."'"; 
 		$stmtselect = $db->prepare($newlogin);
-		$result = $stmtselect->execute([$email, $password]);
+		$result = $stmtselect->execute([$Idnum, $password]);
         $user = $stmtselect->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['user'] = $name;
-        $_SESSION['role'] = $role;
         $_SESSION['userlogin'] = $user;
 		echo "1";
 	}else{

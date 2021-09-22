@@ -5,9 +5,8 @@ require_once('config.php');
 for ($i =0; $i < count($_SESSION['userlogin']); $i++) 
 {
     $name   = $_SESSION['userlogin'][$i]['username'];
-    $email  = $_SESSION['userlogin'][$i]['Email'];
+    $Id  = $_SESSION['userlogin'][$i]['Id_Number'];
     $phne   = $_SESSION['userlogin'][$i]['phone'];
-    $role   = $_SESSION['userlogin'][$i]['Userrole'];
 }
 ?>
 <!DOCTYPE html>
@@ -29,19 +28,8 @@ for ($i =0; $i < count($_SESSION['userlogin']); $i++)
                         <h3 >Edit your personal details and save changes</h3>
                         <form action="" method="post">
                             <input class="form-control" id="name" type="text" name="name" placeholder="Full Name" required>
-                            <input class="form-control" id="email" type="email" name="email" placeholder="E-mail Address" required>
+                            <input class="form-control" id="Id" type="email" name="email" placeholder="E-mail Address" required>
                             <input class="form-control" id="phonenumber" type="number" name="phonenumber" placeholder="Phone Number" required>
-                            <select name="role" id="user_role" class="form-control drop-down" onchange="selected();" required>
-                                <option value="">Are you registering as an employee?</option>
-                                <option value="employee">Yes</option>
-                                <option value="non-employee">No</option>
-                            </select>
-                            <select name="organization" id="org" class="form-control drop-down">
-                                <option value="NA">Select organization</option>
-                                <?php 
-                                    
-                                ?>
-                            </select>
                             <input class="form-control" id="password" type="password" name="password" placeholder="new or existing password" required="">
                             <input class="form-control" id="repassword" type="password" name="repassword" placeholder="Retype Password" onkeyup="passmatch();" required="">
                             <div class="form-button">
@@ -54,21 +42,9 @@ for ($i =0; $i < count($_SESSION['userlogin']); $i++)
     
     <script type="text/javascript">
         document.getElementById('name').value = <?php echo json_encode($name); ?>;
-        document.getElementById('email').value = <?php echo json_encode($email); ?>;
+        document.getElementById('Id').value = <?php echo json_encode($Id); ?>;
         document.getElementById('phonenumber').value = <?php echo json_encode($phne); ?>;
-        document.getElementById('user_role').value = <?php echo json_encode($role); ?>;
 
-
-        function selected(){
-        var selected_role = document.getElementById('user_role').value;
-
-        if(selected_role == "employee"){
-            document.getElementById('org').style.display = "block";
-        }else{
-            document.getElementById('org').style.display = "none";
-        }
-        
-    }
 
     function passmatch(){
         var pass1 = document.getElementById('password').value;
@@ -94,9 +70,8 @@ for ($i =0; $i < count($_SESSION['userlogin']); $i++)
 
             if(valid){
             event.preventDefault();
-            var email       = $('#email').val();
+            var email       = $('#Id').val();
             var name        = $('#name').val();
-            var role        = $('#user_role').val();
             var phonenumber = $('#phonenumber').val();
             var password    = $('#password').val();
             var repassword  = $('#repassword').val();
@@ -104,7 +79,7 @@ for ($i =0; $i < count($_SESSION['userlogin']); $i++)
             $.ajax({
                 url:'update.php',
                 method:'POST',
-                data:{email: email,name: name, role: role, phonenumber:phonenumber, password:password},
+                data:{Id: Id,name: name,phonenumber:phonenumber, password:password},
                 success:function(data){
                     if( data == "1"){
                         Swal.fire({

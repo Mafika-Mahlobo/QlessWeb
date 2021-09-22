@@ -2,14 +2,14 @@
 session_start();
 require_once('config.php');
 
-$email = $_POST['email'];
+$IdNum = $_POST['IdNum'];
 $pass = $_POST['password'];
 
 $password = sha1($pass);
 
-$sql = "SELECT * FROM `users` WHERE email = '".$email."' AND Userpassword = '".$password."' LIMIT 1";
+$sql = "SELECT * FROM `users` WHERE Id_Number = '".$IdNum."' AND Userpassword = '".$password."' LIMIT 1";
 $stmtselect  = $db->prepare($sql);
-$result = $stmtselect->execute([$email, $password]);
+$result = $stmtselect->execute([$IdNum, $password]);
 
 if($result){
 	$user = $stmtselect->fetchAll(PDO::FETCH_ASSOC);
@@ -17,12 +17,12 @@ if($result){
 		for($i = 0; $i < count($user); $i++)
 		{
 			$_SESSION['user'] = $user[$i]['username'];
-			$_SESSION['role'] = $user[$i]['Userrole'];
+			//$_SESSION['role'] = $user[$i]['Userrole'];
 		}
 		$_SESSION['userlogin'] = $user;
 		echo "1";
 	}else{
-		echo "There no user for that combo";		
+		echo "User not found!";		
 	}
 }else{
 	echo "Oops, system error. try again later.";

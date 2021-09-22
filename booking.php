@@ -10,11 +10,6 @@ require_once('config.php');
 
 	}
 
-    if($_SESSION['role'] == "employee"){
-        header("Location: admin.php");
-        
-    }
-
 	if(isset($_GET['logout'])){
 		session_destroy();
 		unset($_SESSION);

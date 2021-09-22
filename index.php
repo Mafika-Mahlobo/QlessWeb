@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iofrm</title>
+    <title>Qless</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" type="text/css" href="css/iofrm-style.css">
@@ -39,7 +39,7 @@
                             <a href="#" class="active">Login</a><a href="register.php">Register</a>
                         </div>
                         <form>
-                            <input class="form-control" id="email" type="email" name="email" placeholder="E-mail Address" required>
+                            <input class="form-control" id="Id" type="number" name="email" placeholder="Id/Passport Number" required>
                             <input class="form-control" id="password" type="password" name="password" placeholder="Password" required>
                             <div class="form-button">
                                 <button id="login" type="submit" class="ibtn">Login</button>
@@ -74,13 +74,13 @@
             if(valid){
             e.preventDefault();
 
-            var email = $('#email').val();
+            var IdNumber = $('#Id').val();
             var password = $('#password').val();
 
             $.ajax({
                 url:'jslogin.php',
                 type:'POST',
-                data:{email: email, password:password},
+                data:{IdNum: IdNumber, password:password},
                 success:function(data){
     
                     if(data == "1"){
