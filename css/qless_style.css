@@ -9,10 +9,11 @@
     margin-bottom: 5%;
     color: grey;
     box-shadow: grey;
+    transition: all 0.4s ease;
 }
-.drop-down:hover{
-    background-color:azure;
-}
+/*.drop-down:hover{
+   // background-color:azure;
+}*/
 
 #side-nav{
     position:absolute;
@@ -271,4 +272,8 @@
 }
 .book-form{
     margin-bottom: 3em;
+}
+
+#orgName{
+    display: none;
 }
