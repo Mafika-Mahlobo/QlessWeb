@@ -98,6 +98,26 @@
     opacity: .2;
 }
 
+.setup-btns{
+	display: inline-block;
+    position: relative;
+    right: initial;
+    margin-bottom: .5em;
+    bottom: initial;
+    color: black;
+    border:double;
+    width: 21em;
+    height: 3em;
+    outline: none;
+    border-radius: .1em;
+    outline: none !important;
+}
+
+.setup-btns:hover{
+	background-color: azure;
+    opacity: .5;
+}
+
 .main-menu-container{
     overflow-y: auto;
 }
@@ -286,4 +306,10 @@
 
 #orgName{
     display: none;
+}
+
+.result-tab-head{
+	border: solid .5px black;
+	text-align: center;
+	background-color: grey;
 }

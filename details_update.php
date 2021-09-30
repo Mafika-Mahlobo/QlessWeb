@@ -28,7 +28,7 @@ for ($i =0; $i < count($_SESSION['userlogin']); $i++)
                         <h3 >Edit your personal details and save changes</h3>
                         <form action="" method="post">
                             <input class="form-control" id="name" type="text" name="name" placeholder="Full Name" required>
-                            <input class="form-control" id="Id" type="email" name="email" placeholder="E-mail Address" required>
+                            <input class="form-control" id="Id" type="number" name="email" placeholder="Id/Passport number" required>
                             <input class="form-control" id="phonenumber" type="number" name="phonenumber" placeholder="Phone Number" required>
                             <input class="form-control" id="password" type="password" name="password" placeholder="new or existing password" required="">
                             <input class="form-control" id="repassword" type="password" name="repassword" placeholder="Retype Password" onkeyup="passmatch();" required="">
@@ -82,19 +82,19 @@ for ($i =0; $i < count($_SESSION['userlogin']); $i++)
                 data:{Id: Id,name: name,phonenumber:phonenumber, password:password},
                 success:function(data){
                     if( data == "1"){
-                        Swal.fire({
+                        /*Swal.fire({
                             'title': 'Success!',
                             'text': "your details where successfuly updated",
                             'type': 'success'
-                        });
-                        //alert("your details where successfuly updated");
+                        });*/
+                        alert("your details where successfuly updated");
                     }else{
-                        Swal.fire({
+                        /*Swal.fire({
                             'title':'Failure!',
                             'text':data,
                             'type':'error'
-                        });
-                        //alert(data);
+                        });*/
+                        alert(data);
                     }
                     
 

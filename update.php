@@ -24,7 +24,7 @@ if(isset($_POST["password"])){
     
 			
 	if($result){
-		$newlogin = "SELECT * FROM `users` WHERE `Id_Number` = '".Idnum."' AND Userpassword = '".$password."'"; 
+		$newlogin = "SELECT * FROM `users` WHERE `Id_Number` = '".$Idnum."' AND Userpassword = '".$password."'"; 
 		$stmtselect = $db->prepare($newlogin);
 		$result = $stmtselect->execute([$Idnum, $password]);
         $user = $stmtselect->fetchAll(PDO::FETCH_ASSOC);
