@@ -24,7 +24,7 @@
                         <div class="website-logo-inside">
                             <a href="index.html">
                                 <div class="logo">
-                                    <img class="logo-size" src="images/logo-light.svg" alt="">
+                                    <img class="logo-size" src="../images/logo-light.svg" alt="">
                                 </div>
                             </a>
                         </div>
